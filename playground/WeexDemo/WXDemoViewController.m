@@ -40,6 +40,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -145,8 +147,18 @@
         return;
     }
     NSURL *URL = [self testURL: [self.url absoluteString]];
+    
+    
+    
+    
     NSString *randomURL = [NSString stringWithFormat:@"%@%@random=%d",URL.absoluteString,URL.query?@"&":@"?",arc4random()];
-    [_instance renderWithURL:[NSURL URLWithString:randomURL] options:@{@"bundleUrl":URL.absoluteString} data:nil];
+    if (!self.wxoptions) {
+        self.wxoptions=[NSMutableDictionary new];
+    }
+    //NSDictionary *noptions=[NSDictionary new];
+    [self.wxoptions setValue:URL.absoluteString forKey:@"bundleUrl"];
+    [self.wxoptions setValue:@"0" forKey:@"skinType"];
+    [_instance renderWithURL:[NSURL URLWithString:randomURL] options:self.wxoptions data:nil];
 }
 
 - (void)updateInstanceState:(WXState)state

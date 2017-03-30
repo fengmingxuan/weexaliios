@@ -20,6 +20,10 @@
 #import <WeexSDK/WeexSDK.h>
 #import <AVFoundation/AVFoundation.h>
 #import <ATSDK/ATManager.h>
+#import "WXWebViewController.h"
+#import "WeeXNavigatorModule.h"
+#import "WeeXNavigationProtocol.h"
+#import "WeeXNavigationDefaultImpl.h"
 
 @interface AppDelegate ()
 @end
@@ -36,7 +40,16 @@
     
     [self initWeexSDK];
     
+    
+    
+    
+    //修改主入口为webview weex降级使用
+    //UIViewController * viewController = [[WXWebViewController alloc] init];
+    //    ((WXWebViewController*)viewController).url = [NSURL URLWithString:newUrlStr];
+   // self.window.rootViewController = viewController;
+    
     self.window.rootViewController = [[WXRootViewController alloc] initWithRootViewController:[self demoController]];
+//    self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
     
     [self startSplashScreen];
@@ -81,6 +94,7 @@
     UIViewController * viewController = [self demoController];
     ((WXDemoViewController*)viewController).url = [NSURL URLWithString:newUrlStr];
     [(WXRootViewController*)self.window.rootViewController pushViewController:viewController animated:YES];
+ 
     return YES;
 }
 
@@ -95,10 +109,13 @@
     
     [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];
     [WXSDKEngine registerHandler:[WXEventModule new] withProtocol:@protocol(WXEventModuleProtocol)];
+    [WXSDKEngine registerHandler:[WeeXNavigationDefaultImpl new] withProtocol:@protocol(WeeXNavigationProtocol)];
     
     [WXSDKEngine registerComponent:@"select" withClass:NSClassFromString(@"WXSelectComponent")];
     [WXSDKEngine registerModule:@"weexModule" withClass:[WXEventModule class]];
     [WXSDKEngine registerModule:@"syncTest" withClass:[WXSyncTestModule class]];
+    [WXSDKEngine registerModule:@"weexNavigatorModule" withClass:[WeeXNavigatorModule class]];
+
     
 #if !(TARGET_IPHONE_SIMULATOR)
     [self checkUpdate];

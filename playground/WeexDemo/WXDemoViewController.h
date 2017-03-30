@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSString *script;
 @property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSMutableDictionary *wxoptions;
 
 @property (nonatomic, strong) SRWebSocket *hotReloadSocket;
 @property (nonatomic, strong) NSString *source;

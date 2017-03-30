@@ -18,9 +18,9 @@
 
 #define DEMO_URL(path) [NSString stringWithFormat:@"http://%@:8080/%s", DEMO_HOST, #path]
 
-#define HOME_URL [NSString stringWithFormat:@"http://%@:8080/dist/app.weex.js", DEMO_HOST]
+#define HOME_URL [NSString stringWithFormat:@"http://%@:8080/dist/mainhotlist.js", DEMO_HOST]
 
-#define BUNDLE_URL [NSString stringWithFormat:@"file://%@/dist/app.weex.js",[NSBundle mainBundle].bundlePath]
+#define BUNDLE_URL [NSString stringWithFormat:@"file://%@/dist/mainhotlist.js",[NSBundle mainBundle].bundlePath]
 
 #define UITEST_HOME_URL @"http://test?_wx_tpl=http://localhost:8080/test/build/TC__Home.js"
 
