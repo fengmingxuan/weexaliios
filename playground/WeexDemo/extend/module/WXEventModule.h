@@ -11,5 +11,5 @@
 #import <WeexSDK/WXModuleProtocol.h>
 
 @interface WXEventModule : NSObject <WXEventModuleProtocol, WXModuleProtocol>
-
+- (void)openTopic:(NSDictionary *)param callback:(WXModuleCallback)callback;
 @end

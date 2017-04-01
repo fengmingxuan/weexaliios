@@ -22,9 +22,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 400, 800)];
-    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.15:8080/index.html?skinType=0"]];
-    [self.view addSubview: webView];
-    [webView loadRequest:request];
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 400, 800)];
+    if(!self.url){
+        self.url = [NSURL URLWithString:@"http://192.168.1.15:8080/index.html?skinType=0"];
+    }
+    NSURLRequest *request =[NSURLRequest requestWithURL:self.url];
+    [self.view addSubview: self.webView];
+    [self.webView loadRequest:request];
 }
 @end

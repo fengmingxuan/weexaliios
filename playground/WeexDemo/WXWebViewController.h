@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface WXWebViewController  : UIViewController
-{
-    UIWebView *webView;
-}
+    @property (nonatomic, strong) NSURL *url;
+    @property UIWebView *webView;
+
+
 @end
  

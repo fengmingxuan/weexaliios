@@ -112,7 +112,7 @@
     [WXSDKEngine registerHandler:[WeeXNavigationDefaultImpl new] withProtocol:@protocol(WeeXNavigationProtocol)];
     
     [WXSDKEngine registerComponent:@"select" withClass:NSClassFromString(@"WXSelectComponent")];
-    [WXSDKEngine registerModule:@"weexModule" withClass:[WXEventModule class]];
+    [WXSDKEngine registerModule:@"weexEventModule" withClass:[WXEventModule class]];
     [WXSDKEngine registerModule:@"syncTest" withClass:[WXSyncTestModule class]];
     [WXSDKEngine registerModule:@"weexNavigatorModule" withClass:[WeeXNavigatorModule class]];
 

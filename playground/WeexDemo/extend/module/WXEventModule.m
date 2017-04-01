@@ -9,6 +9,7 @@
 #import "WXEventModule.h"
 #import "WXDemoViewController.h"
 #import <WeexSDK/WXBaseViewController.h>
+#import "WXWebViewController.h"
 
 @implementation WXEventModule
 
@@ -32,5 +33,22 @@ WX_EXPORT_METHOD(@selector(openURL:))
     [[weexInstance.viewController navigationController] pushViewController:controller animated:YES];
 }
 
-@end
 
+WX_EXPORT_METHOD(@selector(openTopic:callback:))
+- (void)openTopic:(NSDictionary *)param callback:(WXModuleCallback)callback
+{
+    NSString *newURL =  param[@"url"];
+    if ([param[@"url"] hasPrefix:@"//"]) {
+        newURL = [NSString stringWithFormat:@"http:%@", param[@"url"]];
+    } else if (![param[@"url"] hasPrefix:@"http"]) {
+        // relative path
+        newURL = [NSURL URLWithString:param[@"url"] relativeToURL:weexInstance.scriptURL].absoluteString;
+    }
+    
+    UIViewController *controller = [[WXWebViewController alloc] init];
+    ((WXWebViewController *)controller).url = [NSURL URLWithString:newURL];
+    
+    [[weexInstance.viewController navigationController] pushViewController:controller animated:YES];
+}
+
+@end
