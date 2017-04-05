@@ -24,6 +24,9 @@
 #import "WeeXNavigatorModule.h"
 #import "WeeXNavigationProtocol.h"
 #import "WeeXNavigationDefaultImpl.h"
+#import "WeeXStreamModule.h"
+#import "WXActionSheetModule.h"
+
 
 @interface AppDelegate ()
 @end
@@ -111,10 +114,13 @@
     [WXSDKEngine registerHandler:[WXEventModule new] withProtocol:@protocol(WXEventModuleProtocol)];
     [WXSDKEngine registerHandler:[WeeXNavigationDefaultImpl new] withProtocol:@protocol(WeeXNavigationProtocol)];
     
+    
     [WXSDKEngine registerComponent:@"select" withClass:NSClassFromString(@"WXSelectComponent")];
     [WXSDKEngine registerModule:@"weexEventModule" withClass:[WXEventModule class]];
     [WXSDKEngine registerModule:@"syncTest" withClass:[WXSyncTestModule class]];
     [WXSDKEngine registerModule:@"weexNavigatorModule" withClass:[WeeXNavigatorModule class]];
+    [WXSDKEngine registerModule:@"streama" withClass:[WeeXStreamModule class]];
+    [WXSDKEngine registerModule:@"actionSheet" withClass:[WXActionSheetModule class]];
 
     
 #if !(TARGET_IPHONE_SIMULATOR)
